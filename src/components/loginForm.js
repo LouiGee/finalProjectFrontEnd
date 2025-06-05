@@ -1,5 +1,6 @@
 import './loginForm.css';
 import logo from '../resources/RatifyxCook.png';
+
 function LoginForm() {
   return (
 
@@ -12,7 +13,7 @@ function LoginForm() {
       <div className="triangle2"></div>
       
       <div className="logo">
-        <img src={logo} alt="Logo" width="400" />
+        <img src={logo} alt="Logo" width="500" />
       </div>
 
       
