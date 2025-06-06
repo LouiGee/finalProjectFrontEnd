@@ -28,7 +28,7 @@ function ProductionAnalystMenu() {
 
       </div>  
 
-      <img src={returnArrow} id= "returnArrow" alt="returnArrow" width="100" />
+      <a href="./"><img src={returnArrow} id= "returnArrow" alt="returnArrow" width="100" /></a>
 
       <div className="info">
         <p id= "emailPlaceholder"> Email placeholder</p>
