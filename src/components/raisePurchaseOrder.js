@@ -49,8 +49,8 @@ function RaisePurchaseOrder() {
               <label htmlFor="amount">Total Amount:</label>
               <input type="number" id="amount" name="amount" required />
 
-              <div className="form-buttons">
-                <button type="button">Add</button>
+              <div >
+                <button className="form-button" type="button">Add</button>
               </div>
             </form>
           </div>
@@ -66,7 +66,7 @@ function RaisePurchaseOrder() {
                     <th>Company</th>
                     <th>Item</th>
                     <th>Quantity</th>
-                    <th>Total Amount</th>
+                    <th>Total Amount £</th>
                     <th>Date Raised</th>
                     <th> 
                       <div className="delete-button-wrapper">
@@ -82,7 +82,7 @@ function RaisePurchaseOrder() {
                     <td>Acme Corp</td>
                     <td>Steel Beams</td>
                     <td>100</td>
-                    <td>£12,000</td>
+                    <td>12,000</td>
                     <td>2025-06-05</td>
                     <td><input type="checkbox" /></td>
                   </tr>
@@ -92,7 +92,7 @@ function RaisePurchaseOrder() {
                     <td>Global Ltd</td>
                     <td>Bolts</td>
                     <td>200</td>
-                    <td>£3,000</td>
+                    <td>3,000</td>
                     <td>2025-06-05</td>
                     <td><input type="checkbox" /></td>
                   </tr>
@@ -102,7 +102,7 @@ function RaisePurchaseOrder() {
                     <td>BuildIt</td>
                     <td>Concrete Bags</td>
                     <td>50</td>
-                    <td>£1,500</td>
+                    <td>1,500</td>
                     <td>2025-06-05</td>
                     <td><input type="checkbox" /></td>
                   </tr>
@@ -112,7 +112,7 @@ function RaisePurchaseOrder() {
                     <td>SteelWorld</td>
                     <td>Rebars</td>
                     <td>75</td>
-                    <td>£4,500</td>
+                    <td>4,500</td>
                     <td>2025-06-05</td>
                     <td><input type="checkbox" /></td>
                   </tr>
@@ -130,7 +130,7 @@ function RaisePurchaseOrder() {
         <div className="right-panel">
 
           <div className="table-container-2">
-            <h2>Purchase Order Hisotry  </h2>
+            <h2>Purchase Order History  </h2>
             <div className="table-scroll-2">
               <table className="table">
                 <thead>
@@ -140,7 +140,7 @@ function RaisePurchaseOrder() {
                     <th>Company</th>
                     <th>Item</th>
                     <th>Quantity</th>
-                    <th>Total Amount</th>
+                    <th>Total Amount £</th>
                     <th>Date Raised</th>
                     <th>Approved</th>
                   </tr>
@@ -152,7 +152,7 @@ function RaisePurchaseOrder() {
                     <td>Acme Corp</td>
                     <td>Steel Beams</td>
                     <td>100</td>
-                    <td>£12,000</td>
+                    <td>12,000</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -162,7 +162,7 @@ function RaisePurchaseOrder() {
                     <td>Global Ltd</td>
                     <td>Bolts</td>
                     <td>200</td>
-                    <td>£3,000</td>
+                    <td>3,000</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -172,7 +172,7 @@ function RaisePurchaseOrder() {
                     <td>BuildIt</td>
                     <td>Concrete Bags</td>
                     <td>50</td>
-                    <td>£1,500</td>
+                    <td>1,500</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -182,7 +182,7 @@ function RaisePurchaseOrder() {
                     <td>SteelWorld</td>
                     <td>Rebars</td>
                     <td>75</td>
-                    <td>£4,500</td>
+                    <td>4,500</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -192,7 +192,7 @@ function RaisePurchaseOrder() {
                     <td>Acme Corp</td>
                     <td>Steel Beams</td>
                     <td>100</td>
-                    <td>£12,000</td>
+                    <td>12,000</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -202,7 +202,7 @@ function RaisePurchaseOrder() {
                     <td>Global Ltd</td>
                     <td>Bolts</td>
                     <td>200</td>
-                    <td>£3,000</td>
+                    <td>3,000</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -212,7 +212,7 @@ function RaisePurchaseOrder() {
                     <td>BuildIt</td>
                     <td>Concrete Bags</td>
                     <td>50</td>
-                    <td>£1,500</td>
+                    <td>1,500</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -222,7 +222,7 @@ function RaisePurchaseOrder() {
                     <td>SteelWorld</td>
                     <td>Rebars</td>
                     <td>75</td>
-                    <td>£4,500</td>
+                    <td>4,500</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -232,7 +232,7 @@ function RaisePurchaseOrder() {
                     <td>Acme Corp</td>
                     <td>Steel Beams</td>
                     <td>100</td>
-                    <td>£12,000</td>
+                    <td>12,000</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -242,7 +242,7 @@ function RaisePurchaseOrder() {
                     <td>Global Ltd</td>
                     <td>Bolts</td>
                     <td>200</td>
-                    <td>£3,000</td>
+                    <td>3,000</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -252,7 +252,7 @@ function RaisePurchaseOrder() {
                     <td>BuildIt</td>
                     <td>Concrete Bags</td>
                     <td>50</td>
-                    <td>£1,500</td>
+                    <td>1,500</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -262,7 +262,7 @@ function RaisePurchaseOrder() {
                     <td>SteelWorld</td>
                     <td>Rebars</td>
                     <td>75</td>
-                    <td>£4,500</td>
+                    <td>4,500</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -272,7 +272,7 @@ function RaisePurchaseOrder() {
                     <td>Acme Corp</td>
                     <td>Steel Beams</td>
                     <td>100</td>
-                    <td>£12,000</td>
+                    <td>12,000</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -282,7 +282,7 @@ function RaisePurchaseOrder() {
                     <td>Global Ltd</td>
                     <td>Bolts</td>
                     <td>200</td>
-                    <td>£3,000</td>
+                    <td>3,000</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -292,7 +292,7 @@ function RaisePurchaseOrder() {
                     <td>BuildIt</td>
                     <td>Concrete Bags</td>
                     <td>50</td>
-                    <td>£1,500</td>
+                    <td>1,500</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -302,7 +302,7 @@ function RaisePurchaseOrder() {
                     <td>SteelWorld</td>
                     <td>Rebars</td>
                     <td>75</td>
-                    <td>£4,500</td>
+                    <td>4,500</td>
                     <td>2025-06-05</td>
                     <td>Yes</td>
                   </tr>
@@ -310,9 +310,42 @@ function RaisePurchaseOrder() {
               </table>
             </div>
           </div>
-       </div>
+
+          <div className="statistics-container">
+            <h2>Summary Statistics </h2>
+            <table className="statistics-table">
+                <thead>
+                  <tr>
+                    <th>Week Commencing</th>
+                    <th>Total PO's Raised</th>
+                    <th>Total PO Items Raised</th>
+                    <th>Value of PO's Raised £</th>
+                    <th>Average PO Value £</th>
+                  </tr>
+                </thead>       
+                <tbody>
+                  <tr>
+                    <td>2025-06-02</td>
+                    <td>4</td>
+                    <td>19</td>
+                    <td>20,000</td>
+                    <td>2,400</td>
+                  </tr>
+                  <tr>
+                    <td>2025-05-26</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+
+         </div>
+        
       </div>
     </div>
+   </div> 
   );
 }
 

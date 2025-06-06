@@ -7,12 +7,6 @@ body {
   
 }
 
-.scrolling {
-
-  
-}
-
-
 .navbar {
   position: absolute ;
   top: 0;
@@ -24,7 +18,8 @@ body {
   padding: 10px 20px;
   white-space: nowrap;  /* Keep nav items on one line */
   z-index: 999;
-  
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -62,7 +57,7 @@ body {
   margin-left: auto; /* Pushes it to the right in a flex container */
   display: flex;
   align-items: center;
-  transform: translateX(-120px); 
+  transform: translateX(-141px); 
   
 }
 
@@ -116,18 +111,24 @@ input {
   margin-top: 4px;
 }
 
-.form-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-button {
+.form-button {
   padding: 10px 16px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  background-color: #007BFF;
+  background-color: #0c427c;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+  margin-top: 20px;
+}
+
+.submit-button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #0c427c;
   color: white;
   font-weight: bold;
   transition: background-color 0.2s ease;
@@ -163,23 +164,33 @@ button:hover {
 }
 
 .table-container {
-  width: 90%;
+  width: 94.5%;
   max-width: 900px;
   background: #f9f9f9;
   padding: 25px;
   padding-bottom: 20;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
   height: 230px;
+  border-radius: 10px;
 }
 
 .table-container-2 {
-  width: 90%;
+  width: 95%;
   max-width: 900px;
   background: #f9f9f9;
   padding: 25px;
   padding-bottom: 20;
+  margin-top: 25px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-  height: 788px;
+  height: 454px;
+  border-radius: 10px;
+}
+
+.table-container-2 h2 {
+  text-align: center;
+  margin-top: 0;
+  padding-top: 0;
+ 
 }
 
 .table-scroll {
@@ -188,7 +199,7 @@ button:hover {
 }
 
 .table-scroll-2 {
-  max-height: calc(15 * 45px + 1px); /* Approximate row height (3 rows) + border */
+  max-height: calc(8.5 * 45px + 1px); /* Approximate row height (3 rows) + border */
   overflow-y: auto; 
 }
 
@@ -203,6 +214,14 @@ table {
   width: 100%;
   border-collapse: collapse;
   
+}
+
+.table-container thead th{
+  background-color: #0c427c;
+  color: white;
+  position: sticky;
+  top: 0;
+  text-align: left;
 }
 
 thead th{
@@ -261,6 +280,25 @@ th, td {
 .submit-button {
   float: right;
   margin-top: 16px;
+}
+
+.statistics-container {
+  width: 95%;
+  max-width: 900px;
+  background: #f9f9f9;
+  padding: 25px;
+  padding-bottom: 20;
+  margin-top: 29px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  height: 230px;
+  border-radius: 10px;
+}
+
+.statistics-container h2 {
+  text-align: center;
+  margin-top: 0;
+  padding-top: 0;
+ 
 }
 
 
