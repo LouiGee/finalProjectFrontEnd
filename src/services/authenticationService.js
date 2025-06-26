@@ -20,14 +20,15 @@ export class authenticationService {
     const data = await response.json();
 
     // Save jwt token as cookie to be included in every http request to backend
-    Cookies.set("token", data.token);
+    Cookies.set("authenticationToken", data.authenticationToken);
+    Cookies.set("refreshToken", data.refreshToken);
 
     // Decode information from jwt token
-    const authorities = jwtDecode(data.token).authorities[0];
-    const email = jwtDecode(data.token).email;
+    const permission = jwtDecode(data.authenticationToken).permission;
+    const email = jwtDecode(data.authenticationToken).email;
 
     //set in local storage
-    localStorage.setItem("authorities", authorities)
+    localStorage.setItem("permission", permission)
     localStorage.setItem("email", email)
 
     if (authorities === "Production Analyst") {

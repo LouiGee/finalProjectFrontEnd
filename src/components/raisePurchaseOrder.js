@@ -14,7 +14,7 @@ function RaisePurchaseOrder() {
   const [poData, setPoData] = useState([]); 
   const [poTempData, setPoTempData] = useState([]);
   const [email, setEmail] = useState('');
-  const [authorities, setAuthorities] = useState('');
+  const [permission, setPermission] = useState('');
 
   
    // useEffect() is a 'React Hook' - used to perform 'side effects'. Side effects are things
@@ -24,10 +24,10 @@ function RaisePurchaseOrder() {
         
     // Retrieve and store values from localStorage assigned by Authentication Service
     const storedEmail = localStorage.getItem('email');
-    const storedAuthorities = localStorage.getItem('authorities');
+    const storedPermission = localStorage.getItem('permission');
 
     if (storedEmail) setEmail(storedEmail);
-    if (storedAuthorities) setAuthorities(storedAuthorities);
+    if (storedPermission) setPermission(storedPermission);
 
     // Fetch data 
     fetchPOs();
@@ -177,7 +177,7 @@ function RaisePurchaseOrder() {
           <div id="right-group">
             <div id="info">
               <p id="emailPlaceholder">{email || 'Email placeholder'}</p>
-              <p id="jobTitlePlaceholder">{authorities || 'Authorities placeholder'}</p>
+              <p id="jobTitlePlaceholder">{permission || 'Authorities placeholder'}</p>
             </div>
           </div>    
       </nav>

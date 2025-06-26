@@ -11,17 +11,17 @@ function ProductionAnalystMenu() {
   // the page reloads to reflect this. In this way the UI stays in sync with data.
   // setEmail is used exclusively to update variable. Variable is initialised as an array.
   const [email, setEmail] = useState('');
-  const [authorities, setAuthorities] = useState('');
+  const [permission, setPermission] = useState('');
 
   // useEffect() is a 'React Hook' - used to perform 'side effects'. Side effects are things
   // that involve not directly rendering the UI e.g APIcalls, changing local storage
   useEffect(() => {
     
     const storedEmail = localStorage.getItem('email');
-    const storedAuthorities = localStorage.getItem('authorities');
+    const storedPermission = localStorage.getItem('permission');
 
     if (storedEmail) setEmail(storedEmail);
-    if (storedAuthorities) setAuthorities(storedAuthorities);
+    if (storedPermission) setPermission(storedPermission);
     
   }, []);
   
@@ -51,7 +51,7 @@ function ProductionAnalystMenu() {
 
       <div className="info">
         <p id= "emailPlaceholder"> {email || 'Email placeholder'}</p>
-        <p id= "jobTitlePlaceholder"> {authorities || 'Authorities placeholder'} </p>
+        <p id= "jobTitlePlaceholder"> {permission || 'Authorities placeholder'} </p>
       </div>
 
 

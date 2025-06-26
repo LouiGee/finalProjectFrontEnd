@@ -7,6 +7,7 @@ const API_BASE_URL = 'http://localhost:8081/api/po';
 export class POService {
 
   async getAllPOs() {
+
     try {
     
       const response = await axios.get(`${API_BASE_URL}/all`, {
@@ -16,11 +17,24 @@ export class POService {
        },  
     });
 
+      updateCookies(response);
+
       return response.data;
+
     } catch (error) {
       console.error('Error fetching PO data:', error);
       throw error;
     }
+  }
+
+  updateCookies(response) {
+
+    if (response.cookies.authenticationToken && response.cookies.refreshToken) {
+
+        Cookies.set("authenticationToken", cookies.authenticationToken);
+        Cookies.set("refreshToken", cookies.refreshToken);
+
+      }
   }
 
 

@@ -16,7 +16,12 @@ export class POTempService {
       headers: {
         'Content-Type': 'application/json'
       }
-    });
+      });
+
+      if (response.cookies.authenticationToken && response.cookies.refreshToken) {   
+       updateCookies(response);
+      }
+
       return response.data;
     } catch (error) {
       console.error('Error submitting PO data:', error);
@@ -33,9 +38,12 @@ export class POTempService {
       withCredentials: true, // Include cookies i.e jwt token... could use an interceptor class
       headers: {
       'Content-Type': 'application/json' 
-    },
-       
-    });
+      },    
+      });
+
+      if (response.cookies.authenticationToken && response.cookies.refreshToken) {   
+       updateCookies(response);
+      }
 
       return response.data;
 
@@ -56,8 +64,13 @@ export class POTempService {
       withCredentials: true, // Include cookies i.e jwt token... could use an interceptor class
       headers: {
       'Content-Type': 'application/json'
-    }       
-    });
+      }       
+      });
+
+      if (response.cookies.authenticationToken && response.cookies.refreshToken) {   
+       updateCookies(response);
+      }
+
       return response.data;
 
     } catch (error) {
@@ -78,9 +91,12 @@ export class POTempService {
       withCredentials: true, // Include cookies i.e jwt token... could use an interceptor class
       headers: {
       'Content-Type': 'application/json' // or accessToken if you have that
-    }       
-    });
-      console.log("Delete Logging: " , response);
+      }       
+      });
+      
+      if (response.cookies.authenticationToken && response.cookies.refreshToken) {   
+       updateCookies(response);
+      }
 
     } catch (error) {
       console.error('Failed to delete PO', error);
@@ -88,6 +104,13 @@ export class POTempService {
     }
 
     }
+
+  updateCookies(response) {
+
+     Cookies.set("authenticationToken", response.cookies.authenticationToken);
+     Cookies.set("refreshToken", response.cookies.refreshToken);
+
+  }
 }
 
 export default POTempService;
