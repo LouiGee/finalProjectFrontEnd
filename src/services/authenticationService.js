@@ -1,5 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
+import axios from 'axios';
 
 
 const API_BASE_URL = 'http://localhost:8080/api/auth';
@@ -9,34 +10,42 @@ export class authenticationService {
   async loginRequest(credentials) {
 
     // login API requet
-    const response = await fetch(`${API_BASE_URL}/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(credentials),
-    });
 
-    if (!response.ok) throw new Error('Login failed');
-    
-    const data = await response.json();
 
-    // Save jwt token as cookie to be included in every http request to backend
-    Cookies.set("authenticationToken", data.authenticationToken);
-    Cookies.set("refreshToken", data.refreshToken);
+    try { 
+      const response = await axios.post(`${API_BASE_URL}/login`, JSON.stringify(credentials) , {
+        headers: {
+        'Content-Type': 'application/json'
+        }       
+        })
 
-    // Decode information from jwt token
-    const permission = jwtDecode(data.authenticationToken).permission;
-    const email = jwtDecode(data.authenticationToken).email;
+         const data = await response.data;
 
-    //set in local storage
-    localStorage.setItem("permission", permission)
-    localStorage.setItem("email", email)
+          console.log(data)
 
-    if (authorities === "Production Analyst") {
-      window.location.href = "./productionAnalystMenu";
+          // Save jwt token as cookie to be included in every http request to backend
+          Cookies.set("authenticationToken", data.authenticationToken, { path: '/' });
+          Cookies.set("refreshToken", data.refreshToken, { path: '/' });
+
+          // Decode information from jwt token
+          const permission = jwtDecode(data.authenticationToken).permission;
+          const email = jwtDecode(data.authenticationToken).sub;
+
+          //set in local storage
+          localStorage.setItem("permission", permission)
+          localStorage.setItem("email", email)
+
+          if (permission === "Production Analyst") {
+            window.location.href = "./productionAnalystMenu";
+          }
+
+      }
+    catch (error) {
+      // Handle 4xx/5xx errors here
+      console.error('Login failed:', error.response?.data || error.message);
+      throw new Error('Login failed');
     }
- 
   }
-
 }
 
 export default authenticationService;

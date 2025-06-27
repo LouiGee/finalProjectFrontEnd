@@ -17,7 +17,6 @@ export class POService {
        },  
     });
 
-      updateCookies(response);
 
       return response.data;
 
@@ -27,15 +26,7 @@ export class POService {
     }
   }
 
-  updateCookies(response) {
 
-    if (response.cookies.authenticationToken && response.cookies.refreshToken) {
-
-        Cookies.set("authenticationToken", cookies.authenticationToken);
-        Cookies.set("refreshToken", cookies.refreshToken);
-
-      }
-  }
 
 
 }

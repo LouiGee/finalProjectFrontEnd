@@ -20,18 +20,20 @@ function RaisePurchaseOrder() {
    // useEffect() is a 'React Hook' - used to perform 'side effects'. Side effects are things
    // that involve not directly rendering the UI e.g APIcalls, changing local storage
 
-  useEffect(() => {
-        
-    // Retrieve and store values from localStorage assigned by Authentication Service
+  useEffect( () => {
+    
+    const fetchData = async () => {
     const storedEmail = localStorage.getItem('email');
     const storedPermission = localStorage.getItem('permission');
 
     if (storedEmail) setEmail(storedEmail);
     if (storedPermission) setPermission(storedPermission);
 
-    // Fetch data 
-    fetchPOs();
-    fetchPOsTemp();
+    await fetchPOs();         // Wait for response + cookies to be set
+    await fetchPOsTemp();     // Cookies should now be available
+  };
+
+  fetchData();
 
   }, []);
 
@@ -152,7 +154,7 @@ function RaisePurchaseOrder() {
 
   
     // Reflect changes
-    fetchPOsTemp();
+    //fetchPOsTemp();
 
 }
 

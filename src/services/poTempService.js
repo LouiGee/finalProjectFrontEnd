@@ -18,10 +18,6 @@ export class POTempService {
       }
       });
 
-      if (response.cookies.authenticationToken && response.cookies.refreshToken) {   
-       updateCookies(response);
-      }
-
       return response.data;
     } catch (error) {
       console.error('Error submitting PO data:', error);
@@ -40,10 +36,6 @@ export class POTempService {
       'Content-Type': 'application/json' 
       },    
       });
-
-      if (response.cookies.authenticationToken && response.cookies.refreshToken) {   
-       updateCookies(response);
-      }
 
       return response.data;
 
@@ -67,10 +59,6 @@ export class POTempService {
       }       
       });
 
-      if (response.cookies.authenticationToken && response.cookies.refreshToken) {   
-       updateCookies(response);
-      }
-
       return response.data;
 
     } catch (error) {
@@ -86,7 +74,7 @@ export class POTempService {
 
      try {
         
-      const response = await axios.delete(`${API_BASE_URL}/delete`, {
+      await axios.delete(`${API_BASE_URL}/delete`, {
       data: posTemp,
       withCredentials: true, // Include cookies i.e jwt token... could use an interceptor class
       headers: {
@@ -94,9 +82,6 @@ export class POTempService {
       }       
       });
       
-      if (response.cookies.authenticationToken && response.cookies.refreshToken) {   
-       updateCookies(response);
-      }
 
     } catch (error) {
       console.error('Failed to delete PO', error);
@@ -105,12 +90,7 @@ export class POTempService {
 
     }
 
-  updateCookies(response) {
 
-     Cookies.set("authenticationToken", response.cookies.authenticationToken);
-     Cookies.set("refreshToken", response.cookies.refreshToken);
-
-  }
 }
 
 export default POTempService;
