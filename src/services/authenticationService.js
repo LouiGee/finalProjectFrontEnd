@@ -46,6 +46,38 @@ export class authenticationService {
       throw new Error('Login failed');
     }
   }
+
+  async logoutRequest() {
+
+    // login API requet
+
+    try { 
+      const response = await axios.post(`${API_BASE_URL}/logout`, {}, {
+        withCredentials: true, // Include cookies i.e jwt token... could use an interceptor class
+        headers: {
+        'Content-Type': 'application/json'
+        }       
+        })
+
+        // Clear localStorage
+        localStorage.clear();
+
+        // Redirect to the login page
+        window.location.href = "./Login"
+
+        // Get message from the message from the backend
+        const data = await response.data;
+
+        return data;
+
+      }
+    catch (error) {
+      // Handle 4xx/5xx errors here
+      console.error('Logout failed:', error.response?.data || error.message);
+      throw new Error('Logout failed');
+    }
+  }
+
 }
 
 export default authenticationService;

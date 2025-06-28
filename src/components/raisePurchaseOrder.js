@@ -4,9 +4,12 @@ import returnArrow from '../resources/ReturnArrowWhite.png';
 import  POService from '../services/poService.js';
 import  POTempService from '../services/poTempService.js';
 import receipt from '../resources/ReceiptWhite.png';
+import useIdleLogout from '../hooks/useIdleLogout.js';
 
 
 function RaisePurchaseOrder() {
+
+  useIdleLogout();
 
   // useState() is a 'React Hook' - everytime the variable changes e.g the variable poData,
   // the page reloads to reflect this. In this way the UI stays in sync with data.
