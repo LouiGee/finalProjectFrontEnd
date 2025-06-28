@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import './raisePurchaseOrder.css';
 import returnArrow from '../resources/ReturnArrowWhite.png';
 import  POService from '../services/poService.js';
@@ -18,6 +18,7 @@ function RaisePurchaseOrder() {
   const [poTempData, setPoTempData] = useState([]);
   const [email, setEmail] = useState('');
   const [permission, setPermission] = useState('');
+  const [editingField, setEditingField] = useState({ row: null, field: null });
 
   
    // useEffect() is a 'React Hook' - used to perform 'side effects'. Side effects are things
@@ -127,6 +128,33 @@ function RaisePurchaseOrder() {
    } 
 
 
+  async function handleTempPOEdit (poItemNumber, chosenField, enteredValue){
+    
+    let parsedValue = enteredValue;
+
+    if (chosenField === 'quantity' || chosenField === 'price') {
+      parsedValue = Number(enteredValue); // prevent sending invalid blank
+    }
+
+    const TempPOUpdateRequest = {
+      field: chosenField,
+      newValue: parsedValue
+    }
+
+    try {
+          const service = new POTempService();
+          await service.editPOTemp(poItemNumber, TempPOUpdateRequest);
+      } catch (error) {
+        console.error('Failed to edit PO', error);
+      }
+
+    // Reload POs and Temp POs to reflect changes 
+    fetchPOsTemp();
+
+  };
+
+
+
   async function deletePOsTemp() {
 
     // For all selected Po's populate their poItemNumber in an array 'selected'
@@ -157,9 +185,12 @@ function RaisePurchaseOrder() {
 
   
     // Reflect changes
-    //fetchPOsTemp();
+    fetchPOsTemp();
 
-}
+  }
+
+  const isEditing = (rowIndex, fieldName) =>
+  editingField.row === rowIndex && editingField.field === fieldName;
 
 
   return (
@@ -201,7 +232,7 @@ function RaisePurchaseOrder() {
               <label htmlFor="quantity">Quantity:</label>
               <input type="number" id="quantity" name="quantity" required />
 
-              <label htmlFor="unit">Unit:</label>
+              <label htmlFor="unit">Unit: e.g kg</label>
               <input type="text" id="unit" name="unit" required />
 
               <label htmlFor="amount">Price:</label>
@@ -236,12 +267,12 @@ function RaisePurchaseOrder() {
                     <tr key={index}>
                       <td>{po.ponumber}</td>
                       <td>{po.poitemnumber}</td>
-                      <td>{po.company}</td>
-                      <td>{po.item}</td>
-                      <td>{po.quantity}</td>
-                      <td>{po.price}</td>
+                      <td onClick={() => setEditingField({ row: index, field: 'company' })}> {isEditing(index, 'company') ? ( <input type="text" defaultValue={po.company} autoFocus onKeyDown={(e) => { if (e.key === 'Enter') {handleTempPOEdit(po.poitemnumber, 'company', e.target.value); setEditingField({ row: null, field: null }); } else if (e.key === 'Escape') {setEditingField({ row: null, field: null }); }}} onBlur={() => setEditingField({ row: null, field: null })}/>) : (po.company)}</td>
+                      <td onClick={() => setEditingField({ row: index, field: 'item' })}> {isEditing(index, 'item') ? ( <input type="text" defaultValue={po.item} autoFocus onKeyDown={(e) => { if (e.key === 'Enter') {handleTempPOEdit(po.poitemnumber, 'item', e.target.value); setEditingField({ row: null, field: null }); } else if (e.key === 'Escape') {setEditingField({ row: null, field: null }); }}} onBlur={() => setEditingField({ row: null, field: null })}/>) : (po.item)}</td>
+                      <td onClick={() => setEditingField({ row: index, field: 'quantity' })}> {isEditing(index, 'quantity') ? ( <input type="number" defaultValue={po.quantity} autoFocus onKeyDown={(e) => { if (e.key === 'Enter') {handleTempPOEdit(po.poitemnumber, 'quantity', e.target.value); setEditingField({ row: null, field: null }); } else if (e.key === 'Escape') {setEditingField({ row: null, field: null }); }}} onBlur={() => setEditingField({ row: null, field: null })}/>) : (po.quantity)}</td>
+                      <td onClick={() => setEditingField({ row: index, field: 'price' })}> {isEditing(index, 'price') ? ( <input type="number" defaultValue={po.price} autoFocus onKeyDown={(e) => { if (e.key === 'Enter') {handleTempPOEdit(po.poitemnumber, 'price', e.target.value); setEditingField({ row: null, field: null }); } else if (e.key === 'Escape') {setEditingField({ row: null, field: null }); }}} onBlur={() => setEditingField({ row: null, field: null })}/>) : (po.price)}</td>
                       <td>{po.dateRaised.length > 10 ? po.dateRaised.slice(0, -7) : po.dateRaised}</td> {/* Format Date */}
-                      <td><input type="checkbox" value={po.poitemnumber} className="po-checkbox"/></td>
+                      <td><input type="radio" name="deleteChoice" value={po.poitemnumber} className="po-checkbox"/></td>
                     </tr>
                   ))}         
                 </tbody>

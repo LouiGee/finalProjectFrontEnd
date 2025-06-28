@@ -90,6 +90,27 @@ export class POTempService {
 
     }
 
+  /*EDIT Temp PO's*/
+
+  async editPOTemp(poItemNumber, updatedData) {
+
+     try {
+        
+      await axios.put(`${API_BASE_URL}/edit/${poItemNumber}`, updatedData, {
+      withCredentials: true, // Include cookies i.e jwt token... could use an interceptor class
+      headers: {
+      'Content-Type': 'application/json' // or accessToken if you have that
+      }       
+      });
+      
+
+    } catch (error) {
+      console.error('Failed to delete PO', error);
+      throw error;
+    }
+
+    }
+
 
 }
 
