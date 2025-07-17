@@ -1,9 +1,11 @@
 import './App.css';
 import LoginForm from './components/loginForm.js';
-import ProductionAnalystMenu from './components/productionAnalystMenu.js';
+import DepartmentAnalystMenu from './components/departmentAnalystMenu.js';
+import DepartmentManagerMenu from './components/departmentManagerMenu.js';
 import RaisePurchaseOrder from './components/raisePurchaseOrder.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProtectedRouteProductionAnalyst from './routeProtection/routeProtectionProductionAnalyst.js';
+import ProtectedRouteDepartmentAnalyst from './routeProtection/routeProtectionDepartmentAnalyst.js';
+import ProtectedRouteDepartmentManager from './routeProtection/routeProtectionDepartmentManager.js';
 
 function App() {
   return (
@@ -13,22 +15,32 @@ function App() {
 
         {/* Wrap the element, not the Route itself */}
         <Route 
-          path="/ProductionAnalystMenu" 
+          path="/DepartmentAnalystMenu" 
           element={
-            <ProtectedRouteProductionAnalyst>
-              <ProductionAnalystMenu />
-            </ProtectedRouteProductionAnalyst>
+            <ProtectedRouteDepartmentAnalyst>
+              <DepartmentAnalystMenu />
+            </ProtectedRouteDepartmentAnalyst>
           } 
         />
 
         <Route 
           path="/RaisePurchaseOrder" 
           element={
-            <ProtectedRouteProductionAnalyst>
+            <ProtectedRouteDepartmentAnalyst>
               <RaisePurchaseOrder />
-            </ProtectedRouteProductionAnalyst>
+            </ProtectedRouteDepartmentAnalyst>
           } 
         />
+
+        <Route 
+          path="/DepartmentManagerMenu" 
+          element={
+            <ProtectedRouteDepartmentManager>
+              <DepartmentManagerMenu />
+            </ProtectedRouteDepartmentManager>
+          } 
+        />
+
       </Routes>
     </Router>
   );

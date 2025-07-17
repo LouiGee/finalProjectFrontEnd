@@ -35,8 +35,12 @@ export class authenticationService {
           localStorage.setItem("permission", permission)
           localStorage.setItem("email", email)
 
-          if (permission === "Production Analyst") {
-            window.location.href = "./productionAnalystMenu";
+          if (permission === "Department Analyst") {
+            window.location.href = "./departmentAnalystMenu";
+          }
+
+          if (permission === "Department Manager") {
+            window.location.href = "./departmentManagerMenu";
           }
 
       }

@@ -199,7 +199,7 @@ function RaisePurchaseOrder() {
       <nav className="navbar">
         <ul className="nav-links">
           <li id="returnButton">
-            <a href="./productionAnalystMenu">
+            <a href="./departmentAnalystMenu">
               <img src={returnArrow} id="returnArrow" alt="Return Arrow" width="100" />
             </a>
           </li>
@@ -279,7 +279,7 @@ function RaisePurchaseOrder() {
               </table>
             </div>
    
-            <button className = "submit-button" type="submit" onClick={submitPOsTemp}>Submit Purchase Order</button>
+            <button className = "submit-button" type="submit" onClick={submitPOsTemp}>Submit All</button>
             
           </div>
 
@@ -300,7 +300,7 @@ function RaisePurchaseOrder() {
                     <th>Quantity</th>
                     <th>Price £</th>
                     <th>Date Raised</th>
-                    <th>Approved</th>
+                    <th>Status</th>
                   </tr>
                 </thead>       
                 <tbody>
@@ -313,7 +313,7 @@ function RaisePurchaseOrder() {
                       <td>{po.quantity}</td>
                       <td>{po.price}</td>
                       <td>{po.dateRaised.length > 10 ? po.dateRaised.slice(0, -7) : po.dateRaised}</td>
-                      <td>Yes</td>
+                      <td>{po.status}</td>
                     </tr>
                   ))}          
                 </tbody>

@@ -23,7 +23,7 @@ const ProtectedRoute = ({ children }) => {
 
   }
 
-  if (!isAuthenticationTokenValid || permission !== "Production Analyst") {
+  if (!isAuthenticationTokenValid || permission !== "Department Analyst") {
     return <Navigate to="/Login" replace />;
   }
 
