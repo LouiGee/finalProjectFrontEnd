@@ -3,6 +3,7 @@ import LoginForm from './components/loginForm.js';
 import DepartmentAnalystMenu from './components/departmentAnalystMenu.js';
 import DepartmentManagerMenu from './components/departmentManagerMenu.js';
 import RaisePurchaseOrder from './components/raisePurchaseOrder.js';
+import ApprovePurchaseOrder from './components/approvePurchaseOrder.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProtectedRouteDepartmentAnalyst from './routeProtection/routeProtectionDepartmentAnalyst.js';
 import ProtectedRouteDepartmentManager from './routeProtection/routeProtectionDepartmentManager.js';
@@ -37,6 +38,15 @@ function App() {
           element={
             <ProtectedRouteDepartmentManager>
               <DepartmentManagerMenu />
+            </ProtectedRouteDepartmentManager>
+          } 
+        />
+
+        <Route 
+          path="/ApprovePurchaseOrder" 
+          element={
+            <ProtectedRouteDepartmentManager>
+              <ApprovePurchaseOrder />
             </ProtectedRouteDepartmentManager>
           } 
         />
