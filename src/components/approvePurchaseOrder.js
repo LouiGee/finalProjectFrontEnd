@@ -13,7 +13,8 @@ function ApprovePurchaseOrder() {
   // useState() is a 'React Hook' - everytime the variable changes e.g the variable poData,
   // the page reloads to reflect this. In this way the UI stays in sync with data.
   // setPoData is used exclusively to update variable. Variable is initialised as an array.
-  const [poData, setPoData] = useState([]); 
+  const [poNonApprovedData, setPoNonApprovedData] = useState([]); 
+  const [poApprovedData, setPoApprovedData] = useState([]); 
   const [email, setEmail] = useState('');
   const [permission, setPermission] = useState('');
   
@@ -29,7 +30,9 @@ function ApprovePurchaseOrder() {
     if (storedEmail) setEmail(storedEmail);
     if (storedPermission) setPermission(storedPermission);
 
-    await fetchPOs();         
+    await fetchNonApprovedPOs();
+    await fetchApprovedPOs();
+
   };
 
   fetchData();
@@ -40,14 +43,62 @@ function ApprovePurchaseOrder() {
   // API Functions
 
 
-  async function fetchPOs() {
+  async function fetchNonApprovedPOs() {
       
     // API Call
     try {
         const service = new POService();
-        const data = await service.getAllPOs(); 
+        const data = await service.getAllNonApprovedPOs(); 
         console.log(data);
-        setPoData(data);
+        setPoNonApprovedData(data);
+
+      } catch (error) {
+        console.error('Failed to fetch PO data:', error);
+      }
+    }
+
+    async function fetchApprovedPOs() {
+      
+    // API Call
+    try {
+        const service = new POService();
+        const data = await service.getAllApprovedPOs(); 
+        console.log(data);
+        setPoApprovedData(data);
+
+      } catch (error) {
+        console.error('Failed to fetch PO data:', error);
+      }
+    }
+
+
+  async function approvePOs() {
+
+      // For all selected Po's populate their poItemNumber in an array 'selected'
+    const selected = Array.from(document.querySelectorAll('.approveChoice:checked'))
+      .map(cb => cb.value);
+
+    const toSend = [];
+
+    // Loop through the selected poItemNumbers and create a poTemp object(required for API Call)
+    // Then add to the array toSend
+    for (const poItemNumber of selected) {
+
+      const poItemNumberJson = {
+        poitemnumber: poItemNumber,
+      };
+      
+      toSend.push(poItemNumberJson)
+
+    }
+
+    const userEmail = localStorage.getItem('email');
+      
+    // API Call
+    try {
+        const service = new POService();
+        await service.approvePOs(toSend, userEmail); 
+
 
       } catch (error) {
         console.error('Failed to fetch PO data:', error);
@@ -97,11 +148,11 @@ function ApprovePurchaseOrder() {
                     <th>Date Raised</th>
                     <th>Status</th>
                     <th>Raised By</th>
-                    <th><button className="approve-button">Approve Selected</button></th>
+                    <th><button className="approve-button"> onClick={approvePOs} Approve Selected</button></th>
                   </tr>
                 </thead>       
                 <tbody>
-                   {poData.map((po, index) => (
+                   {poNonApprovedData.map((po, index) => (
                     <tr key={index}>
                       <td>{po.ponumber}</td>
                       <td>{po.poitemnumber}</td>
@@ -138,15 +189,15 @@ function ApprovePurchaseOrder() {
                     <th>Item</th>
                     <th>Quantity</th>
                     <th>Price £</th>       
-                    <th>Raised By</th>
                     <th>Date Raised</th> 
+                    <th>Raised By</th>
                     <th>Approved By</th>
                     <th>Approved Date</th>
                     <th>Status</th>
                   </tr>
                 </thead>       
                 <tbody>
-                   {poData.map((po, index) => (
+                   {poApprovedData.map((po, index) => (
                     <tr key={index}>
                       <td>{po.ponumber}</td>
                       <td>{po.poitemnumber}</td>
@@ -155,9 +206,10 @@ function ApprovePurchaseOrder() {
                       <td>{po.quantity}</td>
                       <td>{po.price}</td>
                       <td>{po.dateRaised.length > 10 ? po.dateRaised.slice(0, -7) : po.dateRaised}</td>
-                      <td>{po.status}</td>
                       <td>{po.raisedBy}</td>
-                      <td><input type="checkbox" name="approveChoice" value={po.poitemnumber} className="po-checkbox"/></td>
+                      <td>{po.approvedBy}</td>
+                      <td>{po.approvedDate}</td>
+                      <td>{po.status}</td>
                     </tr>
                   ))}          
                 </tbody>
