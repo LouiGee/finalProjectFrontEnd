@@ -1,10 +1,11 @@
-body {
+html, body {
+  height: 100%;
+  
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  overflow-x: auto;
-  overflow-y: auto;
-  
+  display: flex;
+  flex-direction: column;
 }
 
 /*Navigation bar */
@@ -55,12 +56,6 @@ body {
 
 }
 
-#receipt {
-  position: relative;
-  right: 95px;
-  margin: 0;
-  padding: 0;
-}
 
 #right-group {
   margin-left: auto; /* Pushes it to the right in a flex container */
@@ -102,7 +97,7 @@ body {
 
 .left-panel,
 .right-panel {
-  flex: 1; /* takes 50% each */
+  flex-grow: 1; /* takes 50% each */
   padding: 20px;
   box-sizing: border-box;
 }
@@ -117,96 +112,105 @@ body {
 }
 
 
-/*Purchase Order Form */
+/* Awaiting Approval PO Table */
 
-.form-container {
-  width: 400px;
-  margin: 30px auto;
-  padding: 25px;
-  background: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-}
-
-.form-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-top: 4px;
-}
-
-.form-button {
-  padding: 10px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  background-color: #0c427c;
-  color: white;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
-  margin-top: 20px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-/* PO Entry Table */
-
-.current-po-table-container {
-  width: 94.5%;
+.awaiting-approval-po-table-container {
+  width: 95%;
   max-width: 900px;
   background: #f9f9f9;
   padding: 25px;
   padding-bottom: 20;
+  margin-top: 25px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-  height: 230px;
+  height: 750px;
   border-radius: 10px;
-  position: relative;
 }
 
-.current-po-table-container h2 {
+.awaiting-approval-po-table-container h2 {
+  text-align: center;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.awaiting-approval-po-table-scroll {
+  max-height: calc(8.5 * 45px + 1px); /* Approximate row height (3 rows) + border */
+  overflow-y: auto; 
+}
+
+.awaiting-approval-po-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.awaiting-approval-po-table thead th{
+  background-color: #007BFF;
+  color: white;
+  position: sticky;
+  top: 0;
+  text-align: left;
+}
+
+.awaiting-approval-po-table th, td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 11px;
+}
+
+.awaiting-approval-po-table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.awaiting-approval-po-table tbody tr:nth-child(even) {
+  background-color: #e4e4e4;
+}
+
+.awaiting-approval-po-table tbody tr:hover {
+  background-color: #cccccc;
+}
+
+
+/* Approved PO Table */
+
+.approved-po-table-container {
+  width: 95%;
+  max-width: 900px;
+  background: #f9f9f9;
+  padding: 25px;
+  padding-bottom: 20;
+  margin-top: 25px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  height: 750px;
+  border-radius: 10px;
+}
+
+.approved-po-table-container h2 {
   text-align: center;
   margin-top: 0;
   padding-top: 0;
  
 }
 
-.current-po-table {
+.approved-po-table {
   width: 100%;
   border-collapse: collapse;
 
   
 }
 
-.current-po-table th, .current-po-table td {
+.approved-po-table th, .current-po-table td {
   text-align: left;
   padding: 12px;
   border-bottom: 1px solid #ddd;
   font-size: 13px;
 }
 
-.current-po-table-scroll {
-  max-height: calc(3 * 45px + 1px); /* Approximate row height (3 rows) + border */
+.approved-po-table-scroll {
+  max-height: calc(10 * 45px + 1px); /* Approximate row height (3 rows) + border */
   overflow-y: auto; 
 }
 
-.current-po-table thead {
+.approved-po-table thead {
   background-color: #0c427c;
   color: white;
   position: sticky;
@@ -217,9 +221,6 @@ button:hover {
 
 .approve-button {
   
-
-  /* Optional styling */
-  
   background-color: #0c7c3e;
   color: white;
   border: none;
@@ -227,146 +228,19 @@ button:hover {
   cursor: pointer;
 }
 
-/* Wrapper to help center the button */
-.delete-button-wrapper {
-  display: flex;
-  justify-content: left;
-  align-items: flex-start;
-  height: 100%;
-}
 
-/* Red delete button */
-.delete-button {
-  background-color: #d9534f;
-  color: white;
-  border: none;
-  text-align: left;
-  padding: 4px 10px;
-  font-size: 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  margin-top: 4px;
-  display: block; /* ensures it centers in <th> with text-align: center */
-}
-
-.delete-button:hover {
-  background-color: #c9302c;
-}
-
-.current-po-table tbody tr:nth-child(odd) {
+.awaiting-approval-po-table tbody tr:nth-child(odd) {
   background-color: #ffffff;
 }
 
-.current-po-table tbody tr:nth-child(even) {
+.awaiting-approval-po-table tbody tr:nth-child(even) {
   background-color: #e4e4e4;
 }
 
-.current-po-table tbody tr:hover {
+.awaiting-approval-po-table tbody tr:hover {
   background-color: #cccccc;
 }
 
-/* PO History Table */
-
-.history-po-table-container {
-  width: 95%;
-  max-width: 900px;
-  background: #f9f9f9;
-  padding: 25px;
-  padding-bottom: 20;
-  margin-top: 25px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-  height: 454px;
-  border-radius: 10px;
-}
-
-.history-po-table-container h2 {
-  text-align: center;
-  margin-top: 0;
-  padding-top: 0;
-}
-
-.history-po-table-scroll {
-  max-height: calc(8.5 * 45px + 1px); /* Approximate row height (3 rows) + border */
-  overflow-y: auto; 
-}
-
-.history-po-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.history-po-table thead th{
-  background-color: #007BFF;
-  color: white;
-  position: sticky;
-  top: 0;
-  text-align: left;
-}
-
-.history-po-table th, td {
-  text-align: left;
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
-  font-size: 13px;
-}
-
-.history-po-table tbody tr:nth-child(odd) {
-  background-color: #ffffff;
-}
-
-.history-po-table tbody tr:nth-child(even) {
-  background-color: #e4e4e4;
-}
-
-.history-po-table tbody tr:hover {
-  background-color: #cccccc;
-}
-
-/* Statistics Table */
-
-.statistics-container {
-  width: 95%;
-  max-width: 900px;
-  background: #f9f9f9;
-  padding: 25px;
-  padding-bottom: 20;
-  margin-top: 29px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-  height: 230px;
-  border-radius: 10px;
-}
-
-.statistics-container h2 {
-  text-align: center;
-  margin-top: 0;
-  padding-top: 0;
- 
-}
-
-.statistics-table-scroll {
-  max-height: calc(8.5 * 45px + 1px); /* Approximate row height (3 rows) + border */
-  overflow-y: auto; 
-}
-
-.statistics-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.statistics-table thead th{
-  background-color: #007BFF;
-  color: white;
-  position: sticky;
-  top: 0;
-  text-align: left;
-}
-
-.statistics-table th, td {
-  text-align: left;
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
-  font-size: 13px;
-}
 
 
 

@@ -2,7 +2,7 @@ import { useState, useEffect} from 'react';
 import './approvePurchaseOrder.css';
 import returnArrow from '../resources/ReturnArrowWhite.png';
 import  POService from '../services/poService.js';
-import receipt from '../resources/ReceiptWhite.png';
+
 import useIdleLogout from '../hooks/useIdleLogout.js';
 
 
@@ -78,6 +78,8 @@ function ApprovePurchaseOrder() {
     const selected = Array.from(document.querySelectorAll('.approveChoice:checked'))
       .map(cb => cb.value);
 
+    console.log(selected);
+
     const toSend = [];
 
     // Loop through the selected poItemNumbers and create a poTemp object(required for API Call)
@@ -103,6 +105,12 @@ function ApprovePurchaseOrder() {
       } catch (error) {
         console.error('Failed to fetch PO data:', error);
       }
+    
+    //Refresh Data 
+    await fetchNonApprovedPOs();
+    await fetchApprovedPOs();
+
+    
     }
 
   return (
@@ -111,16 +119,14 @@ function ApprovePurchaseOrder() {
       <nav className="navbar">
         <ul className="nav-links">
           <li id="returnButton">
-            <a href="./departmentAnalystMenu">
+            <a href="./departmentManagerMenu">
               <img src={returnArrow} id="returnArrow" alt="Return Arrow" width="100" />
             </a>
           </li>
           <li id="title">
-            <h1>Raise Purchase Order</h1>
+            <h1>Approve Purchase Order</h1>
           </li>
-          <li id="receipt">
-            <img src={receipt} alt="Receipt" width="80" />
-          </li>
+          
         </ul>
           <div id="right-group">
             <div id="info">
@@ -133,10 +139,10 @@ function ApprovePurchaseOrder() {
       <div className="split-screen">
         <div className="left-panel">
 
-          <div className="history-po-table-container">
+          <div className="awaiting-approval-po-table-container">
             <h2>Purchase Orders Awaiting Approval  </h2>
-            <div className="history-po-table-scroll">
-              <table className="history-po-table">
+            <div className="awaiting-approval-po-table-scroll">
+              <table className="awaiting-approval-po-table">
                 <thead>
                   <tr>
                     <th>PO Number</th>
@@ -146,9 +152,9 @@ function ApprovePurchaseOrder() {
                     <th>Quantity</th>
                     <th>Price £</th>
                     <th>Date Raised</th>
-                    <th>Status</th>
                     <th>Raised By</th>
-                    <th><button className="approve-button"> onClick={approvePOs} Approve Selected</button></th>
+                    <th>Status</th>
+                    <th><button className="approve-button" onClick={approvePOs}>  Approve Selected</button></th>
                   </tr>
                 </thead>       
                 <tbody>
@@ -161,9 +167,10 @@ function ApprovePurchaseOrder() {
                       <td>{po.quantity}</td>
                       <td>{po.price}</td>
                       <td>{po.dateRaised.length > 10 ? po.dateRaised.slice(0, -7) : po.dateRaised}</td>
-                      <td>{po.status}</td>
                       <td>{po.raisedBy}</td>
-                      <td><input type="checkbox" name="approveChoice" value={po.poitemnumber} className="po-checkbox"/></td>
+                      <td>{po.status}</td>
+                      
+                      <td><input type="checkbox" name="approveChoice" value={po.poitemnumber} className="approveChoice"/></td>
                     </tr>
                   ))}          
                 </tbody>
@@ -192,7 +199,7 @@ function ApprovePurchaseOrder() {
                     <th>Date Raised</th> 
                     <th>Raised By</th>
                     <th>Approved By</th>
-                    <th>Approved Date</th>
+                    <th>Date Approved</th>
                     <th>Status</th>
                   </tr>
                 </thead>       
@@ -206,9 +213,9 @@ function ApprovePurchaseOrder() {
                       <td>{po.quantity}</td>
                       <td>{po.price}</td>
                       <td>{po.dateRaised.length > 10 ? po.dateRaised.slice(0, -7) : po.dateRaised}</td>
+                      <td>{po.dateApproved}</td>
                       <td>{po.raisedBy}</td>
                       <td>{po.approvedBy}</td>
-                      <td>{po.approvedDate}</td>
                       <td>{po.status}</td>
                     </tr>
                   ))}          
@@ -221,6 +228,7 @@ function ApprovePurchaseOrder() {
        
         </div>
     </div>
+
    </div> 
   );
 }

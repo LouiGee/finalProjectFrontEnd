@@ -33,7 +33,7 @@ export class POService {
 
     try {
     
-      const response = await axios.get(`${API_BASE_URL}/allApprovedPO`, {
+      const response = await axios.get(`${API_BASE_URL}/allApprovedPo`, {
         withCredentials: true, // Include cookies i.e jwt token... could use an interceptor class
         headers: {
           'Content-Type': 'application/json',
