@@ -48,6 +48,30 @@ export class POService {
       throw error;
     }
   }
+  
+/*GET all POs approved and non approved */ 
+
+  async getAllPOs() {
+
+    try {
+    
+      const response = await axios.get(`${API_BASE_URL}/all`, {
+        withCredentials: true, // Include cookies i.e jwt token... could use an interceptor class
+        headers: {
+          'Content-Type': 'application/json',
+       },  
+    });
+
+
+      return response.data;
+
+    } catch (error) {
+      console.error('Error fetching PO data:', error);
+      throw error;
+    }
+  }
+
+
 
 /*POST Approve POs*/
 

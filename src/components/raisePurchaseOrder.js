@@ -50,7 +50,7 @@ function RaisePurchaseOrder() {
     // API Call
     try {
         const service = new POService();
-        const data = await service.getAllNonApprovedPOs(); 
+        const data = await service.getAllPOs(); 
         setPoData(data);
 
       } catch (error) {

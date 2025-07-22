@@ -197,9 +197,9 @@ function ApprovePurchaseOrder() {
                     <th>Quantity</th>
                     <th>Price £</th>       
                     <th>Date Raised</th> 
+                    <th>Date Approved</th>
                     <th>Raised By</th>
                     <th>Approved By</th>
-                    <th>Date Approved</th>
                     <th>Status</th>
                   </tr>
                 </thead>       
