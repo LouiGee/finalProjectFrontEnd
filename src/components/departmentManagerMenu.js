@@ -6,7 +6,7 @@ import returnArrow from '../resources/ReturnArrow.png';
 import authenticationService from '../services/authenticationService.js';
 import useIdleLogout from '../hooks/useIdleLogout.js';
 
-function ProductionAnalystMenu() {
+function DepartmentAnalystMenu() {
 
   useIdleLogout();
 
@@ -74,9 +74,10 @@ function ProductionAnalystMenu() {
 
       <img src={returnArrow} id="returnArrow" alt="returnArrow" width="100" style={{ cursor: 'pointer' }} onClick={logout}/>
 
-      <div className="info">
-        <p id= "emailPlaceholder"> {email || 'Email placeholder'}</p>
-        <p id= "jobTitlePlaceholder"> {permission || 'Authorities placeholder'} </p>
+      
+      <div id="infoDMM">
+        <p id= "emailPlaceholderDMM"> {email || 'Email placeholder'}</p>
+        <p id= "jobTitlePlaceholderDMM"> {permission || 'Authorities placeholder'} </p>
       </div>
 
 
@@ -84,4 +85,4 @@ function ProductionAnalystMenu() {
   );
 }
 
-export default ProductionAnalystMenu;
+export default DepartmentAnalystMenu;

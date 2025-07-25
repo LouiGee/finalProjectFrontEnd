@@ -2,12 +2,12 @@ import './departmentAnalystMenu.css';
 import { useEffect, useState } from 'react';
 import logo from '../resources/RatifyxCook.png';
 import raisePurchaseOrderButton from '../resources/RaisePurchaseOrderButton.png';
-import receiptUploadButton from '../resources/ReceiptUploadButton.png';
+// import receiptUploadButton from '../resources/ReceiptUploadButton.png';
 import returnArrow from '../resources/ReturnArrow.png';
 import authenticationService from '../services/authenticationService.js';
 import useIdleLogout from '../hooks/useIdleLogout.js';
 
-function ProductionAnalystMenu() {
+function DepartmentAnalystMenu() {
 
   useIdleLogout();
 
@@ -69,20 +69,21 @@ function ProductionAnalystMenu() {
       <div className="optionContainer">
 
         <a href="./raisePurchaseOrder"><img src={raisePurchaseOrderButton} id= "purchaseOrder" alt="PurchaseOrder" width="250" /></a>
-        <a href="./receiptUpload"><img src={receiptUploadButton} id= "receiptUpload" alt="ReceiptUpload" width="250" /></a>
+        {/*<a href="./receiptUpload"><img src={receiptUploadButton} id= "receiptUpload" alt="ReceiptUpload" width="250" /></a>*/}
 
       </div>  
 
       <img src={returnArrow} id="returnArrow" alt="returnArrow" width="100" style={{ cursor: 'pointer' }} onClick={logout}/>
 
-      <div className="info">
-        <p id= "emailPlaceholder"> {email || 'Email placeholder'}</p>
-        <p id= "jobTitlePlaceholder"> {permission || 'Authorities placeholder'} </p>
+      <div id="infoDAM">
+        <p id= "emailPlaceholderDAM"> {email || 'Email placeholder'}</p>
+        <p id= "jobTitlePlaceholderDAM"> {permission || 'Authorities placeholder'} </p>
       </div>
+      
 
 
     </div>
   );
 }
 
-export default ProductionAnalystMenu;
+export default DepartmentAnalystMenu;

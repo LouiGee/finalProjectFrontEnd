@@ -62,32 +62,41 @@ body {
   padding: 0;
 }
 
+/*
 #right-group {
-  margin-left: auto; /* Pushes it to the right in a flex container */
+  margin-left: auto; 
   display: flex;
   align-items: center;
   transform: translateX(-240px); 
   
 }
+*/
 
- #info {
-  position: relative;
-  align-items: center; /* or remove position */
-  color: #f7f7f7;
-  font-size: 15px;
-  margin-left: auto;
-}
+ .infoRPO {
+      padding: 10px;
+      position: fixed; 
+      top: 1%;
+      right: 1%;
+      z-index: 600
+    }
 
-#emailPlaceholder {
-  position: relative;
-  margin-top: 14px;
-}
+  #emailPlaceholderRPO {
+      position: fixed; 
+      color: #f7f7f7;
+      top: 1%;
+      right: 1%;
+      font-weight: bold;
+      z-index: 600
+    }
 
-#jobTitlePlaceholder {
-  position: relative;
-  margin-top: 7px;
-  transform: translateX(120px); 
-}
+  #jobTitlePlaceholderRPO {
+      position: fixed; 
+      color: #f7f7f7;
+      top: 4%;
+      right: 1%;
+      font-weight: bold;
+      z-index: 600
+    }
 
 /*Background */
 
@@ -122,10 +131,13 @@ body {
 .form-container {
   width: 400px;
   margin: 30px auto;
+  border: 10px;
   padding: 25px;
   background: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  height: 505px;
 }
 
 .form-container h2 {
@@ -151,8 +163,12 @@ input {
 }
 
 .form-button {
+  position: absolute;
   padding: 10px 16px;
   border: none;
+  position: absolute;
+  right: 30px;
+  
   border-radius: 6px;
   cursor: pointer;
   background-color: #0c427c;
@@ -226,6 +242,7 @@ button:hover {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 /* Wrapper to help center the button */
@@ -276,7 +293,7 @@ button:hover {
   padding-bottom: 20;
   margin-top: 25px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-  height: 454px;
+  height: 510px;
   border-radius: 10px;
 }
 

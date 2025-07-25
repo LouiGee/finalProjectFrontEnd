@@ -57,33 +57,31 @@ html, body {
 }
 
 
-#right-group {
-  margin-left: auto; /* Pushes it to the right in a flex container */
-  display: flex;
-  align-items: center;
-  transform: translateX(-240px); 
-  
-}
+ .infoAPO {
+      padding: 10px;
+      position: fixed; 
+      top: 1%;
+      right: 1%;
+      z-index: 600
+    }
 
- #info {
-  position: relative;
-  align-items: center; /* or remove position */
-  color: #f7f7f7;
-  font-size: 15px;
-  margin-left: auto;
-}
+  #emailPlaceholderAPO {
+      position: fixed; 
+      color: #f7f7f7;
+      top: 1%;
+      right: 1%;
+      font-weight: bold;
+      z-index: 600
+    }
 
-#emailPlaceholder {
-  position: relative;
-  margin-top: 14px;
-}
-
-#jobTitlePlaceholder {
-  position: relative;
-  margin-top: 7px;
-  transform: translateX(120px); 
-}
-
+  #jobTitlePlaceholderAPO {
+      position: fixed; 
+      color: #f7f7f7;
+      top: 4%;
+      right: 1%;
+      font-weight: bold;
+      z-index: 600
+    }
 /*Background */
 
 .split-screen {
@@ -115,6 +113,7 @@ html, body {
 /* Awaiting Approval PO Table */
 
 .awaiting-approval-po-table-container {
+  position: relative;
   width: 95%;
   max-width: 900px;
   background: #f9f9f9;
@@ -143,7 +142,8 @@ html, body {
 }
 
 .awaiting-approval-po-table thead th{
-  background-color: #007BFF;
+  background-color: #0c427c;
+  font-weight:bold;
   color: white;
   position: sticky;
   top: 0;
@@ -174,7 +174,7 @@ html, body {
 
 .approved-po-table-container {
   width: 95%;
-  max-width: 900px;
+  max-width: 840px;
   background: #f9f9f9;
   padding: 25px;
   padding-bottom: 20;
@@ -208,10 +208,11 @@ html, body {
 .approved-po-table-scroll {
   max-height: calc(10 * 45px + 1px); /* Approximate row height (3 rows) + border */
   overflow-y: auto; 
+  overflow-x: auto; 
 }
 
 .approved-po-table thead {
-  background-color: #0c427c;
+  background-color: #007BFF;
   color: white;
   position: sticky;
   top: 0;
@@ -219,13 +220,23 @@ html, body {
   
 }
 
-.approve-button {
-  
-  background-color: #0c7c3e;
+
+.approve-button-APO {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.approve-button-APO:hover {
+  background-color: #45a049;
 }
 
 

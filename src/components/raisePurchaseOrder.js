@@ -210,12 +210,12 @@ function RaisePurchaseOrder() {
             <img src={receipt} alt="Receipt" width="80" />
           </li>
         </ul>
-          <div id="right-group">
-            <div id="info">
-              <p id="emailPlaceholder">{email || 'Email placeholder'}</p>
-              <p id="jobTitlePlaceholder">{permission || 'Authorities placeholder'}</p>
-            </div>
-          </div>    
+          
+          <div id="info">
+            <p id="emailPlaceholderRPO">{email || 'Email placeholder'}</p>
+            <p id="jobTitlePlaceholderRPO">{permission || 'Authorities placeholder'}</p>
+          </div>
+          
       </nav>
 
       <div className="split-screen">
@@ -228,6 +228,9 @@ function RaisePurchaseOrder() {
 
               <label htmlFor="item">Item:</label>
               <input type="text" id="item" name="item" required />
+
+              <label htmlFor="item">Description:</label>
+              <input type="text" id="description" name="description" required />
 
               <label htmlFor="quantity">Quantity:</label>
               <input type="number" id="quantity" name="quantity" required />
@@ -256,7 +259,7 @@ function RaisePurchaseOrder() {
                     <th>Item</th>
                     <th>Quantity</th>
                     <th>Price £</th>
-                    <th>Date Raised</th>
+                    <th>Description</th>
                     <th>     
                         <button className="delete-button" onClick={deletePOsTemp}>Delete</button>  
                     </th>
@@ -271,7 +274,7 @@ function RaisePurchaseOrder() {
                       <td onClick={() => setEditingField({ row: index, field: 'item' })}> {isEditing(index, 'item') ? ( <input type="text" defaultValue={po.item} autoFocus onKeyDown={(e) => { if (e.key === 'Enter') {handleTempPOEdit(po.poitemnumber, 'item', e.target.value); setEditingField({ row: null, field: null }); } else if (e.key === 'Escape') {setEditingField({ row: null, field: null }); }}} onBlur={() => setEditingField({ row: null, field: null })}/>) : (po.item)}</td>
                       <td onClick={() => setEditingField({ row: index, field: 'quantity' })}> {isEditing(index, 'quantity') ? ( <input type="number" defaultValue={po.quantity} autoFocus onKeyDown={(e) => { if (e.key === 'Enter') {handleTempPOEdit(po.poitemnumber, 'quantity', e.target.value); setEditingField({ row: null, field: null }); } else if (e.key === 'Escape') {setEditingField({ row: null, field: null }); }}} onBlur={() => setEditingField({ row: null, field: null })}/>) : (po.quantity)}</td>
                       <td onClick={() => setEditingField({ row: index, field: 'price' })}> {isEditing(index, 'price') ? ( <input type="number" defaultValue={po.price} autoFocus onKeyDown={(e) => { if (e.key === 'Enter') {handleTempPOEdit(po.poitemnumber, 'price', e.target.value); setEditingField({ row: null, field: null }); } else if (e.key === 'Escape') {setEditingField({ row: null, field: null }); }}} onBlur={() => setEditingField({ row: null, field: null })}/>) : (po.price)}</td>
-                      <td>{po.dateRaised.length > 10 ? po.dateRaised.slice(0, -7) : po.dateRaised}</td> {/* Format Date */}
+                      <td>{po.description} </td>
                       <td><input type="radio" name="deleteChoice" value={po.poitemnumber} className="po-checkbox"/></td>
                     </tr>
                   ))}         
@@ -299,6 +302,7 @@ function RaisePurchaseOrder() {
                     <th>Item</th>
                     <th>Quantity</th>
                     <th>Price £</th>
+                    <th>Description</th>
                     <th>Date Raised</th>
                     <th>Status</th>
                   </tr>
@@ -312,6 +316,7 @@ function RaisePurchaseOrder() {
                       <td>{po.item}</td>
                       <td>{po.quantity}</td>
                       <td>{po.price}</td>
+                      <td>{po.description}</td>
                       <td>{po.dateRaised.length > 10 ? po.dateRaised.slice(0, -7) : po.dateRaised}</td>
                       <td>{po.status}</td>
                     </tr>

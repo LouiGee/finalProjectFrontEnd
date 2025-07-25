@@ -2,6 +2,7 @@ import { useState, useEffect} from 'react';
 import './approvePurchaseOrder.css';
 import returnArrow from '../resources/ReturnArrowWhite.png';
 import  POService from '../services/poService.js';
+import approveButton from '../resources/ApprovePurchaseOrderButtonWhite.png';
 
 import useIdleLogout from '../hooks/useIdleLogout.js';
 
@@ -87,7 +88,7 @@ function ApprovePurchaseOrder() {
     for (const poItemNumber of selected) {
 
       const poItemNumberJson = {
-        poitemnumber: poItemNumber,
+        "poitemnumber": poItemNumber,
       };
       
       toSend.push(poItemNumberJson)
@@ -126,14 +127,16 @@ function ApprovePurchaseOrder() {
           <li id="title">
             <h1>Approve Purchase Order</h1>
           </li>
+          <li id="receipt">
+              <img src={approveButton} alt="Receipt" width="80" />
+          </li>
           
         </ul>
-          <div id="right-group">
-            <div id="info">
-              <p id="emailPlaceholder">{email || 'Email placeholder'}</p>
-              <p id="jobTitlePlaceholder">{permission || 'Authorities placeholder'}</p>
-            </div>
-          </div>    
+
+        <div id="infoAPO">
+          <p id="emailPlaceholderAPO">{email || 'Email placeholder'}</p>
+          <p id="jobTitlePlaceholderAPO">{permission || 'Authorities placeholder'}</p>
+        </div>
       </nav>
 
       <div className="split-screen">
@@ -151,10 +154,11 @@ function ApprovePurchaseOrder() {
                     <th>Item</th>
                     <th>Quantity</th>
                     <th>Price £</th>
+                    <th>Description</th>
                     <th>Date Raised</th>
                     <th>Raised By</th>
                     <th>Status</th>
-                    <th><button className="approve-button" onClick={approvePOs}>  Approve Selected</button></th>
+                    <th>Selected for Approval</th>
                   </tr>
                 </thead>       
                 <tbody>
@@ -166,6 +170,7 @@ function ApprovePurchaseOrder() {
                       <td>{po.item}</td>
                       <td>{po.quantity}</td>
                       <td>{po.price}</td>
+                      <td>{po.description}</td>
                       <td>{po.dateRaised.length > 10 ? po.dateRaised.slice(0, -7) : po.dateRaised}</td>
                       <td>{po.raisedBy}</td>
                       <td>{po.status}</td>
@@ -175,11 +180,17 @@ function ApprovePurchaseOrder() {
                   ))}          
                 </tbody>
               </table>
-                
+
+
+             
             </div>
             
+            <button className="approve-button-APO" onClick={approvePOs}>  Approve Selected</button>
+
           </div> 
           
+          
+   
         </div>
 
         <div className="right-panel">
@@ -195,7 +206,8 @@ function ApprovePurchaseOrder() {
                     <th>Company</th>
                     <th>Item</th>
                     <th>Quantity</th>
-                    <th>Price £</th>       
+                    <th>Price £</th> 
+                    <th>Description</th>    
                     <th>Date Raised</th> 
                     <th>Date Approved</th>
                     <th>Raised By</th>
@@ -212,8 +224,10 @@ function ApprovePurchaseOrder() {
                       <td>{po.item}</td>
                       <td>{po.quantity}</td>
                       <td>{po.price}</td>
+                      <td>{po.description}</td>
                       <td>{po.dateRaised.length > 10 ? po.dateRaised.slice(0, -7) : po.dateRaised}</td>
-                      <td>{po.dateApproved}</td>
+                      <td>{po.dateApproved.length > 10 ? po.dateApproved.slice(0, -7) : po.dateApproved}</td>
+                    
                       <td>{po.raisedBy}</td>
                       <td>{po.approvedBy}</td>
                       <td>{po.status}</td>

@@ -1,17 +1,15 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8081/api/temppo';
+const API_BASE_URL = 'http://localhost:8081/api/potemp';
 
 export class POTempService {
 
-  /*axios used in place of fetch for more robust support for API calls 
-
-  /*GET TempPO's*/
+  /*axios used in place of fetch for more robust support for API calls */
 
   async submitPOsTemp() {
 
     try {
-      const response = await axios.get(`${API_BASE_URL}/submit`, {   
+      const response = await axios.post(`${API_BASE_URL}/submit`, "", {   
       withCredentials: true, // Include cookies i.e jwt token... could use an interceptor class
       headers: {
         'Content-Type': 'application/json'
@@ -25,6 +23,8 @@ export class POTempService {
     }
 
   }
+
+  /*GET TempPO's*/
 
   async getAllPOsTemp() {
 
@@ -40,7 +40,7 @@ export class POTempService {
       return response.data;
 
     } catch (error) {
-      console.error('Error fetching PO data', error);
+      console.error('Error fetching Temp PO data', error);
       throw error;
     }
 

@@ -2,7 +2,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow-x: hidden;
+  overflow-x: hidden; 
 
 }
 
@@ -55,15 +55,8 @@ html, body {
        display: flex;
     }
 
-    #receiptUpload {
-      position: absolute; 
-      left: 50%;; 
-    }
+  
 
-    #purchaseOrder {
-      position: absolute; 
-      right: 50%;; 
-    }
 
  
 
@@ -93,22 +86,32 @@ html, body {
       cursor: pointer;
     }
 
-    .info {
-      padding: 10px
-    }
+  
 
-    #emailPlaceholder {
+    .infoDMM {
+      padding: 10px;
       position: fixed; 
-      font-weight: bold;
-      right: -82.5%;
-      z-index: 600
+      top: 1%;
+      right: 1%;
+      z-index: 600;
     }
 
-    #jobTitlePlaceholder {
-      position: absolute; 
+    #emailPlaceholderDMM {
+      position: fixed; 
+      color: #000000;
+      top: 1%;
+      right: 1%;
       font-weight: bold;
-      right: -84.5%;
-      z-index: 600
+      z-index: 600;
+    }
+
+    #jobTitlePlaceholderDMM {
+      position: fixed; 
+      color: #000000;
+      top: 4%;
+      right: 1%;
+      font-weight: bold;
+      z-index: 600;
     }
 
  
