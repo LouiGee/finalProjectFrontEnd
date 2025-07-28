@@ -1,0 +1,92 @@
+body, html {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    .triangle-background {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: white;
+    }
+
+    .triangle1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 70vw solid #84D1F2; /* Sky blue */
+      border-bottom: 100vh solid transparent;
+      
+    }
+
+    .triangle2 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 30vw solid #DCEAF7; /* Lighter blue */
+      border-top: 50vh solid transparent;
+      
+    }
+
+    .logo {
+      position: absolute; 
+      left: 50%;                /* Move left edge to center */
+      transform: translateX(-55%); /* Shift back by half width */
+      display: flex;
+      justify-content: center; /* horizontal center */
+      align-items: center;
+      height: 35vh; 
+      z-index: 500; /* Higher number = in front */
+    }
+
+    .loginContainer {
+      position: absolute; 
+      left: 50%;                /* Move left edge to center */
+      transform: translateX(-50%); /* Shift back by half width */
+      display: flex;
+      justify-content: center; /* horizontal center */
+      align-items: center;
+      height: 68vh;
+      z-index: 600; /* Higher number = in front */
+    }
+
+    .inputFieldsContainer {
+      padding: 20px; /* adds 20px space inside all sides of the div */
+    }
+
+
+
+    .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            box-sizing: border-box;
+        }
+
+
+
+    .btn {
+      width: 100%;               /* Move left edge to center */
+      padding: 11px;
+      background-color: #24292f;
+      color: white;
+      border: 4px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      }
+
+    .btn:hover {
+      background-color: #444d56;
+      }
+
+    
